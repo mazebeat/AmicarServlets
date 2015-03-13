@@ -1,0 +1,26 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package cl.intelidata.amicarsvl;
+
+import cl.intelidata.amicarsvl.jpa.Clientes;
+import cl.intelidata.amicarsvl.conf.EntityHelper;
+import javax.persistence.EntityManager;
+
+/**
+ *
+ * @author Maze
+ */
+public class Test {
+
+    public static void main(String... args) throws Exception {
+        EntityManager em = EntityHelper.getInstance().getEntityManager();
+
+        Clientes c = em.find(Clientes.class, 1);
+
+        System.out.println(c.getNombreCliente());
+        em.close();
+    }
+}
