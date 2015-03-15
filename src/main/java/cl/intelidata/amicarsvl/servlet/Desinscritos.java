@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Desinscritos extends HttpServlet {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -46,13 +48,13 @@ public class Desinscritos extends HttpServlet {
                     if (!cliente.getDesinscrito()) {
                         logger.info("UPDATE CLIENTE");
                         t.actualizarCliente(cliente);
-                        logger.info("REGISTER CLIENTE", cliente);
+                        logger.info("REGISTER CLIENTE {}", cliente);
                         opt = 'L';
                     } else {
-                        logger.warn("CLIENTE YA DESISNCRITO", cliente);
+                        logger.warn("CLIENTE YA DESISNCRITO {}", cliente);
                     }
                 } else {
-                    logger.info("ERROR DB: NOT FOUND CLIENTE", cliente);
+                    logger.info("ERROR DB: NOT FOUND CLIENTE {}", cliente);
                 }
             } else {
                 logger.warn("ERROR: URL PARAMS NOT VALID");
@@ -61,7 +63,7 @@ public class Desinscritos extends HttpServlet {
             logger.info("REGISTER PROCESS: " + request.getParameter(Text.CLIENTE) + " | " + request.getParameter(Text.COTIZACION));
             Tools.redirect(request, response, opt);
         } catch (Exception ex) {
-            logger.error("ERROR PROCESS FAILED", ex);
+            logger.error("ERROR PROCESS FAILED {}", ex);
         }
 
     }

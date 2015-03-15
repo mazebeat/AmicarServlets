@@ -59,6 +59,7 @@ public class Archivo {
     }
 
     public void guardarLista(java.util.List<String> lista, String strRuta, String strCabecera, String strExtension) {
+        logger.info("SAVE LIST TO FILE {} | {} | {} | {}", lista, strRuta, strCabecera, strExtension);
         // Atributos y variables locales
         java.io.BufferedWriter bufferedWriter = null;
         java.io.BufferedWriter bufferedWriterArchivo = null;

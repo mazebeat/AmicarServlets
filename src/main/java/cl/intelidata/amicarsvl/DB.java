@@ -5,6 +5,7 @@
  */
 package cl.intelidata.amicarsvl;
 
+import static cl.intelidata.amicarsvl.conf.Configuracion.logger;
 import cl.intelidata.amicarsvl.jpa.Clientes;
 import cl.intelidata.amicarsvl.conf.EntityHelper;
 import cl.intelidata.amicarsvl.jpa.Proceso;
@@ -79,14 +80,25 @@ public class DB {
         try {
             em = EntityHelper.getInstance().getEntityManager();
             em.getTransaction().begin();
+
             switch (what) {
                 case 'c':
-                    process.setFechaClickLink(Tools.nowDate());
+                    if (process.getFechaClickLink() != null) {
+                        logger.warn("CORREO YA CONTIENE CLICK {}", process);
+                    } else {
+                        process.setFechaClickLink(Tools.nowDate());
+                    }
                     break;
                 case 'r':
-                    process.setFechaAperturaMail(Tools.nowDate());
+                    if (process.getFechaAperturaMail() != null) {
+                        logger.warn("CORREO YA LEIDO {}", process);
+                    } else {
+                        process.setFechaAperturaMail(Tools.nowDate());
+                    }
                     break;
             }
+
+            em.merge(process);
             em.getTransaction().commit();
         } catch (Exception e) {
             throw new Exception("Error en consulta ", e);
@@ -103,7 +115,6 @@ public class DB {
     private Clientes client(Integer iClienteID) throws Exception {
         Clientes cliente = null;
         EntityManager em = null;
-
         try {
             em = EntityHelper.getInstance().getEntityManager();
             cliente
@@ -129,6 +140,7 @@ public class DB {
             em = EntityHelper.getInstance().getEntityManager();
             em.getTransaction().begin();
             client.setDesinscrito(true);
+            em.merge(client);
             em.getTransaction().commit();
         } catch (Exception e) {
             throw new Exception("Error en consulta ", e);

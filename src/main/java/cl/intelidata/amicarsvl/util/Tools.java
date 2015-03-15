@@ -97,7 +97,7 @@ public class Tools {
     }
 
     private static String formatLine(List<String> list) {
-        String line = null;
+        String line = "";
 
         for (String l : list) {
             line = line.concat(l).concat("|");

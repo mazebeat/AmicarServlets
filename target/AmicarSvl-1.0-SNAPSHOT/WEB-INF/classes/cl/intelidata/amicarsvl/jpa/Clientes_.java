@@ -7,9 +7,9 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value = "EclipseLink-2.5.2.v20140319-rNA", date = "2015-03-13T19:40:27")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2015-03-15T03:27:23")
 @StaticMetamodel(Clientes.class)
-public class Clientes_ {
+public class Clientes_ { 
 
     public static volatile ListAttribute<Clientes, Proceso> procesoList;
     public static volatile SingularAttribute<Clientes, String> rutCliente;

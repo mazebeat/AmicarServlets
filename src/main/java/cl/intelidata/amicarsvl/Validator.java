@@ -5,6 +5,7 @@
  */
 package cl.intelidata.amicarsvl;
 
+import static cl.intelidata.amicarsvl.conf.Configuracion.logger;
 import cl.intelidata.amicarsvl.util.MCrypt;
 
 /**
@@ -21,9 +22,9 @@ public class Validator {
         String decrypted = null;
         try {
             MCrypt mcrypt = new MCrypt();
-            decrypted = new String(mcrypt.decrypt(input));
+            decrypted = new String(mcrypt.decrypt(input)).trim();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " {}", e);
         }
 
         return decrypted;
@@ -33,9 +34,9 @@ public class Validator {
         String encrypted = null;
         try {
             MCrypt mcrypt = new MCrypt();
-            encrypted = MCrypt.bytesToHex(mcrypt.encrypt("1"));
+            encrypted = MCrypt.bytesToHex(mcrypt.encrypt("1")).trim();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " {}", e);
         }
 
         return encrypted;

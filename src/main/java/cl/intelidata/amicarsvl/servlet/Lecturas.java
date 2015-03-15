@@ -17,6 +17,8 @@ import javax.imageio.ImageIO;
 
 public class Lecturas extends HttpServlet {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,14 +47,9 @@ public class Lecturas extends HttpServlet {
                 proc = t.getProceso(Integer.parseInt(cotiz));
 
                 if (proc != null) {
-                    if (proc.getFechaAperturaMail() == null) {
-                        logger.info("UPDATING PROCESO", proc);
-                        t.actualizarProceso(proc, 'r');
-                    } else {
-                        logger.info("CORREO YA LEIDO", proc);
-                    }
+                    t.actualizarProceso(proc, 'r');
                 } else {
-                    logger.info("ERROR BD: NOT FOUND PROCESO", proc);
+                    logger.info("ERROR BD: NOT FOUND PROCESO {}", proc);
                 }
             } else {
                 logger.error("ERROR: URL PARAMS NOT VALID");
@@ -61,7 +58,7 @@ public class Lecturas extends HttpServlet {
             logger.info("REGISTER PROCESS: " + request.getParameter(Text.CLIENTE) + " | " + request.getParameter(Text.COTIZACION));
             this.returnImage(response);
         } catch (Exception ex) {
-            logger.error("ERROR PROCESS FAILED", ex);
+            logger.error("ERROR PROCESS FAILED {}", ex);
         } finally {
             logger.info("FINISH PROCESS");
         }
@@ -81,7 +78,7 @@ public class Lecturas extends HttpServlet {
             out = response.getOutputStream();
             ImageIO.write(bi, "png", out);
         } catch (Exception ex) {
-            logger.error("ERROR SHOW IMAGE FAILED", ex);
+            logger.error("ERROR SHOW IMAGE FAILED {}", ex);
         } finally {
             out.close();
         }
