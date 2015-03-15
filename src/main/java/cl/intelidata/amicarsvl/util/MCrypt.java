@@ -8,11 +8,17 @@ import org.slf4j.LoggerFactory;
  */
 public class MCrypt {
 
+    /**
+     *
+     */
     public static Logger logger = LoggerFactory.getLogger(MCrypt.class);
     private javax.crypto.spec.IvParameterSpec ivspec;
     private javax.crypto.spec.SecretKeySpec keyspec;
     private javax.crypto.Cipher cipher;
 
+    /**
+     *
+     */
     public MCrypt() {
         this.ivspec = new javax.crypto.spec.IvParameterSpec(Text.IV.getBytes());
 

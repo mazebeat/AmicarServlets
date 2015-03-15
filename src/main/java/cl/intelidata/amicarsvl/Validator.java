@@ -15,12 +15,26 @@ import org.slf4j.LoggerFactory;
  */
 public class Validator {
 
+    /**
+     *
+     */
     public static Logger logger = LoggerFactory.getLogger(Validator.class);
 
+    /**
+     *
+     * @param user
+     * @param process
+     * @return
+     */
     public Boolean validateInputs(String user, String process) {
         return user != null && process != null;
     }
 
+    /**
+     *
+     * @param input
+     * @return
+     */
     public String desencryptInput(String input) {
         String decrypted = null;
         try {
@@ -33,6 +47,11 @@ public class Validator {
         return decrypted;
     }
 
+    /**
+     *
+     * @param input
+     * @return
+     */
     public String encryptInputs(String input) {
         String encrypted = null;
         try {

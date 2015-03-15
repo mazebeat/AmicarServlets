@@ -19,32 +19,28 @@ import org.slf4j.LoggerFactory;
  */
 public class DB {
 
+    /**
+     *
+     */
     public static Logger logger = LoggerFactory.getLogger(DB.class);
 
-    public static void main(String... args) throws Exception {
-
-        /**
-         * EXAMPLE
-         */
-//        EntityManager em = null;
-//
-//        try {
-//            em = EntityHelper.getInstance().getEntityManager();
-//            // Toda la consulta aca
-//            Clientes c = em.find(Clientes.class, 1);
-//            System.out.println(c.getFonoParticular());
-//
-//        } catch (Exception e) {
-//            throw new Exception("Error en consulta ", e);
-//        } finally {
-//            //necesario para cada consulta si queda abierto consume una conexion a la bd
-//            if (em != null && em.isOpen()) {
-//                if (em.getTransaction().isActive()) {
-//                    em.getTransaction().rollback();
-//                }
-//                em.close();
-//            }
-//        }
+    /**
+     * EXAMPLE
+     * <p>
+     * EntityManager em = null; try { em =
+     * EntityHelper.getInstance().getEntityManager(); // Toda la consulta aca
+     * Clientes c = em.find(Clientes.class, 1);
+     * System.out.println(c.getFonoParticular());
+     * <p>
+     * } catch (Exception e) { throw new Exception("Error en consulta ", e); }
+     * finally { //necesario para cada consulta si queda abierto consume una *
+     * conexion a la bd if (em != null && em.isOpen()) { if
+     * (em.getTransaction().isActive()) { em.getTransaction().rollback(); }
+     * em.close(); } }
+     * <p>
+     * @param args
+     */
+    public static void main(String... args) {
     }
 
     private Proceso process(Integer iProcesoID) throws Exception {
@@ -157,10 +153,22 @@ public class DB {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     public Clientes getCliente(Integer id) throws Exception {
         return this.client(id);
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     public Proceso getProceso(Integer id) throws Exception {
         return this.process(id);
     }
@@ -177,6 +185,11 @@ public class DB {
         this.updateProcess(proceso, queFecha);
     }
 
+    /**
+     *
+     * @param cliente
+     * @throws Exception
+     */
     public void actualizarCliente(Clientes cliente) throws Exception {
         this.updateClient(cliente);
     }

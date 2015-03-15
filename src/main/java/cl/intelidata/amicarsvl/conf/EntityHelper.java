@@ -2,13 +2,11 @@ package cl.intelidata.amicarsvl.conf;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- * *
  * Clase Singleton para manejo de EntityManagerFactory con ObjectDB<br>
  * <p>
  * @author Juan Astorga
@@ -26,6 +24,11 @@ public class EntityHelper {
         entityManagerFactory = Persistence.createEntityManagerFactory("AmicarPU", propiedades);
     }
 
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
     public static EntityHelper getInstance() throws Exception {
         if (entityHelper == null) {
             entityHelper = new EntityHelper();
@@ -39,6 +42,7 @@ public class EntityHelper {
      * mas de una satura las conexiones a la BD
      * <p>
      * @return EntityManagerFactory
+     * @throws java.lang.Exception
      */
     public EntityManager getEntityManager() throws Exception {
         return entityManagerFactory.createEntityManager();

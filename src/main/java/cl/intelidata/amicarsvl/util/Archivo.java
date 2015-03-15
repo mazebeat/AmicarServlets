@@ -1,27 +1,51 @@
 package cl.intelidata.amicarsvl.util;
 
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
 import org.jam.superutils.FastFileTextReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ *
+ * @author Maze
+ */
 public class Archivo {
 
+    /**
+     *
+     */
     public static Logger logger = LoggerFactory.getLogger(Archivo.class);
     private String strPathEntrada;
     private String strPathSalida;
     // Extension archivo modificado a csv
     private String CSV = "_pro.csv";
 
+    /**
+     *
+     * @param strDirectorioEntrada
+     * @param strDirectorioSalida
+     */
     public Archivo(String strDirectorioEntrada, String strDirectorioSalida) {
         setPath(strDirectorioEntrada.trim(), strDirectorioSalida.trim());
     }
 
-    public java.util.List<String> leer(String strArchivo, String strCabecera) {
+    /**
+     *
+     * @param strArchivo
+     * @param strCabecera
+     * @return
+     */
+    public List<String> leer(String strArchivo, String strCabecera) {
         // Atributos y variables locales
         String strLinea = "";
-        java.util.List<String> lista = new java.util.ArrayList<String>();
+        List<String> lista = new ArrayList<String>();
         try {
             logger.info("leyendo del archivo");
             // Crea el objeto que leera el archivo
@@ -52,7 +76,13 @@ public class Archivo {
         return lista;
     }
 
-    public void guardarLista(java.util.List<String> lista, String strRuta, String strExtension) {
+    /**
+     *
+     * @param lista
+     * @param strRuta
+     * @param strExtension
+     */
+    public void guardarLista(List<String> lista, String strRuta, String strExtension) {
         try {
             this.guardarLista(lista, strRuta, null, strExtension);
         } catch (Exception e) {
@@ -60,11 +90,18 @@ public class Archivo {
         }
     }
 
+    /**
+     *
+     * @param lista
+     * @param strRuta
+     * @param strCabecera
+     * @param strExtension
+     */
     public void guardarLista(java.util.List<String> lista, String strRuta, String strCabecera, String strExtension) {
         logger.info("SAVE LIST TO FILE {} | {} | {} | {}", lista, strRuta, strCabecera, strExtension);
         // Atributos y variables locales
-        java.io.BufferedWriter bufferedWriter = null;
-        java.io.BufferedWriter bufferedWriterArchivo = null;
+        BufferedWriter bufferedWriter = null;
+        BufferedWriter bufferedWriterArchivo = null;
         // Comienza la escritura del archivo
         String archivo = System.currentTimeMillis() + "." + strExtension;
         String archivoFinal = strRuta.trim() + archivo;
@@ -72,7 +109,7 @@ public class Archivo {
 
         String strArchivo = strRuta.trim() + archivo;
         try {
-            bufferedWriter = new java.io.BufferedWriter(new java.io.FileWriter(strArchivo));
+            bufferedWriter = new BufferedWriter(new FileWriter(strArchivo));
             logger.info("Creando el archivo", strArchivo);
             if (strCabecera != null) {
                 // Inserta la cabecera del archivo
@@ -86,7 +123,7 @@ public class Archivo {
                 bufferedWriter.append(strDatos);
                 bufferedWriter.newLine();
             }
-            bufferedWriterArchivo = new java.io.BufferedWriter(new java.io.OutputStreamWriter(new java.io.FileOutputStream(strRuta + "Generado.txt"), "UTF-8"));
+            bufferedWriterArchivo = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(strRuta + "Generado.txt"), Text.UTF_8));
             bufferedWriterArchivo.append(archivoFinal);
             bufferedWriterArchivo.newLine();
         } catch (java.io.IOException e) {
@@ -101,14 +138,20 @@ public class Archivo {
         }
     }
 
-    public void guardarListaCSV(java.util.List<String> lista, String strNombreArchivo, String strCabecera) {
+    /**
+     * 
+     * @param lista
+     * @param strNombreArchivo
+     * @param strCabecera 
+     */
+    public void guardarListaCSV(List<String> lista, String strNombreArchivo, String strCabecera) {
         // Atributos y variables locales
-        java.io.BufferedWriter bufferedWriter = null;
+        BufferedWriter bufferedWriter = null;
         // Comienza la escritura del archivo
         strNombreArchivo = this.getStrPathSalida() + strNombreArchivo.trim();
         String strArchivo = strNombreArchivo.trim() + System.currentTimeMillis() + this.CSV;
         try {
-            bufferedWriter = new java.io.BufferedWriter(new java.io.OutputStreamWriter(new java.io.FileOutputStream(strArchivo), "UTF-8"));
+            bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(strArchivo), Text.UTF_8));
             logger.info("Creando el archivo", strArchivo);
             if (strCabecera != null) {
                 // Inserta la cabecera del archivo
@@ -135,7 +178,12 @@ public class Archivo {
         }
     }
 
-    public void guardarListaCSV(java.util.List<String> lista, String strNombreArchivo) {
+    /**
+     * 
+     * @param lista
+     * @param strNombreArchivo 
+     */
+    public void guardarListaCSV(List<String> lista, String strNombreArchivo) {
         try {
             this.guardarListaCSV(lista, strNombreArchivo, null);
         } catch (Exception ex) {
@@ -143,6 +191,11 @@ public class Archivo {
         }
     }
 
+    /**
+     * 
+     * @param strDirectorioEntrada
+     * @param strDirectorioSalida 
+     */
     private void setPath(String strDirectorioEntrada, String strDirectorioSalida) {
 
         logger.info("Seteando los directorios de entrada y salida");

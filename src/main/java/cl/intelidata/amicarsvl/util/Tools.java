@@ -13,10 +13,21 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *
+ * @author Maze
+ */
 public class Tools {
 
+    /**
+     *
+     */
     public static final Logger LOGGER = Logger.getLogger(Tools.class.getName());
 
+    /**
+     *
+     * @return
+     */
     public static Timestamp nowDate() {
         logger.info("GET DATE");
         Date fecha = new Date();
@@ -25,6 +36,12 @@ public class Tools {
         return time;
     }
 
+    /**
+     *
+     * @param urlBase
+     * @param params
+     * @return
+     */
     public static String fullURL(String urlBase, HashMap<String, String> params) {
         logger.info("CREATE URL TO ", urlBase);
         for (Map.Entry<String, String> entry : params.entrySet()) {
@@ -39,6 +56,12 @@ public class Tools {
         return urlBase;
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @param opt
+     */
     public static void redirect(HttpServletRequest request, HttpServletResponse response, char opt) {
         logger.info("REDIRECTO TO ANOTHER PAGE");
         response.setContentType("text/html");
@@ -72,6 +95,10 @@ public class Tools {
         response.setHeader("Location", site);
     }
 
+    /**
+     *
+     * @param proceso
+     */
     public static void mailEjecutivo(Proceso proceso) {
         try {
             Archivo archivo = new Archivo(Configuracion.getInstance().getInitParameter("salidaemmesaging"), Configuracion.getInstance().getInitParameter("salidaemmesaging"));
