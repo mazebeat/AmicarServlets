@@ -1,12 +1,14 @@
 package cl.intelidata.amicarsvl.util;
 
-import static cl.intelidata.amicarsvl.conf.Configuracion.logger;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.jam.superutils.FastFileTextReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Archivo {
 
+    public static Logger logger = LoggerFactory.getLogger(Archivo.class);
     private String strPathEntrada;
     private String strPathSalida;
     // Extension archivo modificado a csv

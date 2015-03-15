@@ -5,18 +5,21 @@
  */
 package cl.intelidata.amicarsvl;
 
-import static cl.intelidata.amicarsvl.conf.Configuracion.logger;
 import cl.intelidata.amicarsvl.jpa.Clientes;
 import cl.intelidata.amicarsvl.conf.EntityHelper;
 import cl.intelidata.amicarsvl.jpa.Proceso;
 import cl.intelidata.amicarsvl.util.Tools;
 import javax.persistence.EntityManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author Maze
  */
 public class DB {
+
+    public static Logger logger = LoggerFactory.getLogger(DB.class);
 
     public static void main(String... args) throws Exception {
 

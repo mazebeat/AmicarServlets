@@ -2,7 +2,6 @@ package cl.intelidata.amicarsvl.servlet;
 
 import cl.intelidata.amicarsvl.DB;
 import cl.intelidata.amicarsvl.Validator;
-import static cl.intelidata.amicarsvl.conf.Configuracion.logger;
 import cl.intelidata.amicarsvl.jpa.Clientes;
 import cl.intelidata.amicarsvl.util.Text;
 import cl.intelidata.amicarsvl.util.Tools;
@@ -11,9 +10,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Desinscritos extends HttpServlet {
 
+    public static Logger logger = LoggerFactory.getLogger(Desinscritos.class);
     private static final long serialVersionUID = 1L;
 
     /**

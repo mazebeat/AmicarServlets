@@ -67,7 +67,7 @@ public class Tools {
             }
         }
 
-        logger.info("Redireccionando a ", site);
+        logger.info("Redireccionando a {}", site);
         response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY); // SC_MOVED_TEMPORARILY | SC_MOVED_PERMANENTLY
         response.setHeader("Location", site);
     }

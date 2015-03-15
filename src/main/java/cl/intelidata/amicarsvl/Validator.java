@@ -5,14 +5,17 @@
  */
 package cl.intelidata.amicarsvl;
 
-import static cl.intelidata.amicarsvl.conf.Configuracion.logger;
 import cl.intelidata.amicarsvl.util.MCrypt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author Maze
  */
 public class Validator {
+
+    public static Logger logger = LoggerFactory.getLogger(Validator.class);
 
     public Boolean validateInputs(String user, String process) {
         return user != null && process != null;

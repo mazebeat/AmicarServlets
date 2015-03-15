@@ -2,7 +2,6 @@ package cl.intelidata.amicarsvl.servlet;
 
 import cl.intelidata.amicarsvl.Validator;
 import cl.intelidata.amicarsvl.DB;
-import static cl.intelidata.amicarsvl.conf.Configuracion.logger;
 import cl.intelidata.amicarsvl.jpa.Proceso;
 import cl.intelidata.amicarsvl.util.Text;
 import javax.servlet.ServletException;
@@ -14,9 +13,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import javax.imageio.ImageIO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Lecturas extends HttpServlet {
 
+    public static Logger logger = LoggerFactory.getLogger(Lecturas.class);
     private static final long serialVersionUID = 1L;
 
     /**

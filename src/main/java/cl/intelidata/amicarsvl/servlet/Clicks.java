@@ -2,7 +2,6 @@ package cl.intelidata.amicarsvl.servlet;
 
 import cl.intelidata.amicarsvl.DB;
 import cl.intelidata.amicarsvl.Validator;
-import static cl.intelidata.amicarsvl.conf.Configuracion.logger;
 import cl.intelidata.amicarsvl.jpa.Proceso;
 import cl.intelidata.amicarsvl.util.Text;
 import cl.intelidata.amicarsvl.util.Tools;
@@ -11,9 +10,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Clicks extends HttpServlet {
 
+    public static Logger logger = LoggerFactory.getLogger(Clicks.class);
     private static final long serialVersionUID = 1L;
 
     /**
@@ -50,6 +52,7 @@ public class Clicks extends HttpServlet {
 
                         logger.info("GENERATE MAIL FILE TO EJECUTIVO");
                         Tools.mailEjecutivo(proceso);
+                        logger.info("REGISTER PROCESS: " + request.getParameter(Text.CLIENTE) + " | " + request.getParameter(Text.COTIZACION));
                     } else {
                         logger.info("COTIZACION YA REALIZADA", proceso);
                     }
@@ -61,7 +64,6 @@ public class Clicks extends HttpServlet {
                 logger.error("ERROR: URL PARAMS NOT VALID");
             }
 
-            logger.info("REGISTER PROCESS: " + request.getParameter(Text.CLIENTE) + " | " + request.getParameter(Text.COTIZACION));
             Tools.redirect(request, response, opt);
         } catch (Exception ex) {
             logger.error("ERROR PROCESS FAILED", ex);

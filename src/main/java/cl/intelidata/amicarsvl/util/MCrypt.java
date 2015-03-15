@@ -1,10 +1,14 @@
 package cl.intelidata.amicarsvl.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * MCrypt class Created by Maze on 04-03-2015.
  */
 public class MCrypt {
 
+    public static Logger logger = LoggerFactory.getLogger(MCrypt.class);
     private javax.crypto.spec.IvParameterSpec ivspec;
     private javax.crypto.spec.SecretKeySpec keyspec;
     private javax.crypto.Cipher cipher;
@@ -17,9 +21,10 @@ public class MCrypt {
         try {
             this.cipher = javax.crypto.Cipher.getInstance("AES/CBC/NoPadding");
         } catch (java.security.NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " {}", e);
         } catch (javax.crypto.NoSuchPaddingException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " {}", e);
+
         }
     }
 
