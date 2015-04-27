@@ -1,17 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <description>Amicar Servlets para el proyecto nuevo</description>
     <display-name>AmicarSvl</display-name>
     <servlet>
         <servlet-name>Lecturas</servlet-name>
-        <servlet-class>cl.intelidata.amicarsvl.servlet.Lecturas</servlet-class>
+        <servlet-class>cl.intelidata.amicar.servlet.Lecturas</servlet-class>
+        <init-param>
+            <param-name>fork</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>xpoweredBy</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <load-on-startup></load-on-startup>
     </servlet>
     <servlet>
         <servlet-name>Clicks</servlet-name>
-        <servlet-class>cl.intelidata.amicarsvl.servlet.Clicks</servlet-class>
+        <servlet-class>cl.intelidata.amicar.servlet.Clicks</servlet-class>
+        <init-param>
+            <param-name>fork</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>xpoweredBy</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <load-on-startup></load-on-startup>
     </servlet>
     <servlet>
         <servlet-name>Desinscritos</servlet-name>
-        <servlet-class>cl.intelidata.amicarsvl.servlet.Desinscritos</servlet-class>
+        <servlet-class>cl.intelidata.amicar.servlet.Desinscritos</servlet-class>
+        <init-param>
+            <param-name>fork</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>xpoweredBy</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <load-on-startup></load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>Lecturas</servlet-name>
@@ -25,11 +53,6 @@
         <servlet-name>Desinscritos</servlet-name>
         <url-pattern>/Desinscritos</url-pattern>
     </servlet-mapping>
-    <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
-    </session-config>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
